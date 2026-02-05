@@ -9,8 +9,8 @@ describe('Cadastro de Produto', () => {
   //ARRANGE => Etapa de preparação de teste
   // Endereço do projeto no servidor de teste 
     cy.visit('https://cotiaws.github.io/projet-estoque/index.html')
-    cy.xpath('//*[@id="usuario"]').type("admin")
-    cy.xpath('//*[@id="senha"]').type("123")
+    cy.xpath('//*[@id="usuario"]').type("admin");
+    cy.xpath('//*[@id="senha"]').type("123");
     cy.xpath('//*[@id="loginForm"]/button').click();
 
   //ACT -> Etapa de execução da ação do teste (cadastrar o produto)
@@ -20,5 +20,12 @@ describe('Cadastro de Produto', () => {
     cy.xpath('//*[@id="produtoForm"]/button').click();
 
     //ASSERT -> Etapa para verificar os resultados do teste
+    cy.xpath('//*[@id="mensagem"]').should('contain', 'Produto cadastrado com sucesso!')
+
+    //Gerar evidência
+    cy.screenshot('Deve cadastrar Produto com sucesso!', { overwrite : true });
+
+    //Gerando relatório
+
   })
 })
